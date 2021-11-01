@@ -15,12 +15,12 @@
 			List<Int32> numbers = numbersExpression.GetNumbers().ToList();
 			return numbers
 					.Any( static number => number < 0 )
-					? throw new ArgumentException( @$"negatives not allowed{
-						numbers
-								.Where( static number => number < 0 )
-								.Aggregate(
-										seed: String.Empty,
-										func: static (acc, number) => $"{acc} {number}" )}" )
+					? throw new ArgumentException(
+							@$"negatives not allowed{
+								numbers
+										.Where( static number => number < 0 )
+										.JoinedString()
+							}" )
 					: numbers.Sum();
 		}
 
@@ -56,5 +56,14 @@
 				return null;
 			}
 		}
+
+		private static String JoinedString (
+				this IEnumerable<Int32> numberList,
+				String                  separator = " "
+		) =>
+				numberList
+						.Aggregate(
+								seed: String.Empty,
+								func: (acc, number) => $"{acc}{separator}{number}" );
 	}
 }
