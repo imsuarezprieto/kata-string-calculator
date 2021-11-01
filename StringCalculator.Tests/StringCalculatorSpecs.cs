@@ -86,5 +86,21 @@ namespace Exeal.Katas.StringCalculator.Tests
 			// Then
 			Assert.Equal( expected: 3, actual: sum );
 		}
+
+		// Calling Add with a negative number will throw an exception “negatives not allowed”
+		//	and the negative that was passed.
+		// If there are multiple negatives, show all of them in the exception message.
+
+		[Fact]
+		public void GIVEN_StringWithNegativeNumbers_WHEN_Add_THEN_ThrowException()
+		{
+			// Given
+			const String STRING_WITH_NEGATIVE_NUMBERS = "-1,2";
+			// When
+			static void AddNegativeNumbers() => StringCalculator.Add( STRING_WITH_NEGATIVE_NUMBERS );
+			// Then
+			var exception = Assert.Throws<ArgumentException>( AddNegativeNumbers );
+			Assert.Equal( expected: "negatives not allowed -1", actual: exception.Message );
+		}
 	}
 }

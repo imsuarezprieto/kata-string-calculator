@@ -15,7 +15,16 @@
 					? 0
 					: numbersExpression
 							.GetNumbers()
-							.Sum();
+							.Any( number => number < 0 )
+							? throw new ArgumentException( @$"negatives not allowed{numbersExpression
+									.GetNumbers()
+									.Where( static number => number < 0 )
+									.Aggregate(
+											seed: String.Empty,
+											func: static (acc, number) => $"{acc} {number}" )}" )
+							: numbersExpression
+									.GetNumbers()
+									.Sum();
 		}
 
 		[SuppressMessage( category: "ReSharper", checkId: "StringStartsWithIsCultureSpecific" )]
