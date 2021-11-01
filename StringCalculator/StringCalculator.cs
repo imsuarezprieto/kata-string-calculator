@@ -1,6 +1,7 @@
 ﻿namespace Exeal.Katas.StringCalculator
 {
 	using System;
+	using System.Linq;
 
 	public static class StringCalculator
 	{
@@ -8,7 +9,10 @@
 		{
 			return numbersExpression == String.Empty
 					? 0
-					: Int32.Parse( numbersExpression );
+					: numbersExpression.Split( ',' )
+							.ToList()
+							.Select( Int32.Parse )
+							.Sum();
 		}
 	}
 }

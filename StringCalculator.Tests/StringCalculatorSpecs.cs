@@ -32,5 +32,16 @@ namespace Exeal.Katas.StringCalculator.Tests
 			// Then
 			Assert.Equal( expected: NUMBER_TO_TEST, actual: sum );
 		}
+
+		[Fact]
+		public void GIVEN_TwoNumbersString_WHEN_Add_THEN_ReturnTheSum()
+		{
+			// Given
+			var twoNumbersString = "1,2";
+			// When
+			Int32 sum = StringCalculator.Add( twoNumbersString );
+			// Then
+			Assert.Equal( expected: 3, actual: sum );
+		}
 	}
 }
