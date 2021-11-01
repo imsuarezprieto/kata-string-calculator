@@ -139,5 +139,21 @@ namespace Exeal.Katas.StringCalculator.Tests
 			Assert.Equal( expected: 6, actual: multicharDelimiters );
 		}
 
+
+		// Allow multiple delimiters like this:
+		//	“ //[delim1][delim2]\n”
+		// For example “//[*][%]\n1*2%3” should return 6.
+
+
+		[Fact]
+		public void GIVEN_multiple_delimiters_WHEN_add_THEN_return_sum() {
+			// Given
+			const String WITH_MULTIPLE_DELIMITERS = "//[*][%]\n1*2%3";
+			// When
+			Int32 multipleDelimiters = StringCalculator.Add( WITH_MULTIPLE_DELIMITERS );
+			// Then
+			Assert.Equal( expected: 6, actual: multipleDelimiters );
+		}
+
 	}
 }
