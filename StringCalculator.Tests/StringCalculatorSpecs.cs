@@ -1,4 +1,24 @@
-namespace StringCalculator.Tests
+namespace Exeal.Katas.StringCalculator.Tests
 {
-	public sealed class StringCalculatorSpecs {}
+	using System;
+	using Xunit;
+
+	public sealed class StringCalculatorSpecs
+	{
+		// Create a simple String calculator with a method signature:
+		//		int Add(string)
+		// The method can take up to two numbers, separated by commas, and will return their sum.
+		// For an empty string it will return 0
+
+		[Fact]
+		public void GIVEN_EmptyString_WHEN_Add_THEN_Returns0()
+		{
+			// Given
+			var emptyString = String.Empty;
+			// When
+			Int32 sum = StringCalculator.Add( emptyString );
+			// Then
+			Assert.Equal( expected: 0, actual: sum );
+		}
+	}
 }
