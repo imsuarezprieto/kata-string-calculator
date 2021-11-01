@@ -52,7 +52,7 @@
 			try {
 				return Int32.Parse( @string );
 			}
-			catch (Exception exception) {
+			catch {
 				return null;
 			}
 		}
