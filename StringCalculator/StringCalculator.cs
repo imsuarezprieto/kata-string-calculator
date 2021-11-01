@@ -6,7 +6,8 @@
 	{
 		public static Int32 Add (String numbersExpression)
 		{
-			return 0;
+			if (numbersExpression == String.Empty) return 0;
+			return Int32.Parse( numbersExpression );
 		}
 	}
 }

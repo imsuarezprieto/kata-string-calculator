@@ -20,5 +20,17 @@ namespace Exeal.Katas.StringCalculator.Tests
 			// Then
 			Assert.Equal( expected: 0, actual: sum );
 		}
+
+		[Fact]
+		public void GIVEN_OneNumberString_WHEN_Add_THEN_ReturnTheNumber()
+		{
+			// Given
+			const Int32 NUMBER_TO_TEST  = 1;
+			var         oneNumberString = $"{NUMBER_TO_TEST}";
+			// When
+			Int32 sum = StringCalculator.Add( oneNumberString );
+			// Then
+			Assert.Equal( expected: NUMBER_TO_TEST, actual: sum );
+		}
 	}
 }
