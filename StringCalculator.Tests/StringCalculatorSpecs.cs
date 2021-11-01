@@ -55,5 +55,17 @@ namespace Exeal.Katas.StringCalculator.Tests
 			// Then
 			Assert.Equal( expected: 6, actual: sum );
 		}
+
+		// Allow the Add method to handle new lines between numbers (instead of commas).
+		[Fact]
+		public void GIVEN_NumberStringWithNewLines_WHEN_Add_THEN_ReturnTheSum()
+		{
+			// Given
+			const String NUMBERS_WITH_NEWLINES = "1\n2,3";
+			// When
+			Int32 sum = StringCalculator.Add( NUMBERS_WITH_NEWLINES );
+			// Then
+			Assert.Equal( expected: 6, actual: sum );
+		}
 	}
 }
