@@ -155,5 +155,19 @@ namespace Exeal.Katas.StringCalculator.Tests
 			Assert.Equal( expected: 6, actual: multipleDelimiters );
 		}
 
+
+		// Make sure you can also handle multiple delimiters with length longer than one char
+
+
+		[Fact]
+		public void GIVEN_multiple__multichar_delimiters_WHEN_add_THEN_return_sum() {
+			// Given
+			const String WITH_MULTIPLE_DELIMITERS = "//[***][%%%]\n1***2%%%3";
+			// When
+			Int32 multipleDelimiters = StringCalculator.Add( WITH_MULTIPLE_DELIMITERS );
+			// Then
+			Assert.Equal( expected: 6, actual: multipleDelimiters );
+		}
+
 	}
 }
