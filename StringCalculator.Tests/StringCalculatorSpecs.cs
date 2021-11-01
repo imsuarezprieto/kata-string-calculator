@@ -83,7 +83,7 @@ namespace Exeal.Katas.StringCalculator.Tests
 
 
 		[Fact]
-		public void GIVE_number_string_with_custom_delimiters_WHEN_add_THEN_return_the_sum() {
+		public void GIVEN_number_string_with_custom_delimiters_WHEN_add_THEN_return_the_sum() {
 			// Given
 			var numbersWithCustomDelimiters = "//;\n1;2";
 			// When
@@ -107,6 +107,18 @@ namespace Exeal.Katas.StringCalculator.Tests
 			// Then
 			var exception = Assert.Throws<ArgumentException>( AddNegativeNumbers );
 			Assert.Equal( expected: "negatives not allowed -1", actual: exception.Message );
+		}
+
+
+		// Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2
+		[Fact]
+		public void GIVEN_numbers_bigger_than_1000_WHEN_add_THEN_they_be_ignored() {
+			// Given
+			const String WITH_NUMBERS_BIGGER1000 = "2,1001";
+			// When
+			Int32 noBigger1000Sum = StringCalculator.Add( WITH_NUMBERS_BIGGER1000 );
+			// Then
+			Assert.Equal( expected: 2, actual: noBigger1000Sum );
 		}
 
 	}

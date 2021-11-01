@@ -64,7 +64,8 @@
 				this String @string
 		) {
 			try {
-				return Int32.Parse( @string );
+				Int32 number = Int32.Parse( @string );
+				return number > 1000 ? 0 : number;
 			}
 			catch {
 				return null;
