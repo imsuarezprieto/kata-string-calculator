@@ -28,23 +28,31 @@
 		private static Char[] GetDelimiter (
 				this String numbersExpression
 		) {
-			return new[] {
-					',',
-					'\n',
-					numbersExpression.StartsWith( "//" ) ? numbersExpression[2] : '\0',
-			};
+			String delimiter =
+					numbersExpression
+							.MatchExpression()
+							.Groups["DELIMITER"]
+							.Value;
+			return delimiter == String.Empty
+					? new[] {',', '\n'}
+					: delimiter.ToCharArray();
 		}
 
 		private static IEnumerable<Int32> GetNumbers (
 				this String numbersExpression
-		) {
-			return new Regex( @"(//.\n)?(?<LIST>[\S\s]+)" )
-					.Match( numbersExpression )
-					.Groups["LIST"]
-					.Value
-					.Split( numbersExpression.GetDelimiter() )
-					.Select( static number => number.Parse() ?? 0 );
-		}
+		) =>
+				numbersExpression
+						.MatchExpression()
+						.Groups["LIST"]
+						.Value
+						.Split( numbersExpression.GetDelimiter() )
+						.Select( static number => number.Parse() ?? 0 );
+
+		private static Match MatchExpression (
+				this String stringExpression
+		) =>
+				new Regex( @"(//(?<DELIMITER>.)\n)?(?<LIST>[\S\s]+)" )
+						.Match( stringExpression );
 
 		private static Int32? Parse (
 				this String @string
