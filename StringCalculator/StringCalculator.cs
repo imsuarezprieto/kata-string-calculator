@@ -11,20 +11,16 @@
 		[SuppressMessage( category: "ReSharper", checkId: "PossiblyMistakenUseOfParamsMethod" )]
 		public static Int32 Add (String numbersExpression)
 		{
-			return numbersExpression == String.Empty
-					? 0
-					: numbersExpression
-							.GetNumbers()
-							.Any( number => number < 0 )
-							? throw new ArgumentException( @$"negatives not allowed{numbersExpression
-									.GetNumbers()
-									.Where( static number => number < 0 )
-									.Aggregate(
-											seed: String.Empty,
-											func: static (acc, number) => $"{acc} {number}" )}" )
-							: numbersExpression
-									.GetNumbers()
-									.Sum();
+			List<Int32>? numbers = numbersExpression.GetNumbers().ToList();
+			return numbers
+					.Any( static number => number < 0 )
+					? throw new ArgumentException( @$"negatives not allowed{
+						numbers
+								.Where( static number => number < 0 )
+								.Aggregate(
+										seed: String.Empty,
+										func: static (acc, number) => $"{acc} {number}" )}" )
+					: numbers.Sum();
 		}
 
 		[SuppressMessage( category: "ReSharper", checkId: "StringStartsWithIsCultureSpecific" )]
@@ -48,7 +44,19 @@
 					.Groups["LIST"]
 					.Value
 					.Split( numbersExpression.GetDelimiter() )
-					.Select( Int32.Parse );
+					.Select( static number => number.Parse() ?? 0 );
+		}
+
+		private static Int32? Parse (
+				this String @string
+		)
+		{
+			try {
+				return Int32.Parse( @string );
+			}
+			catch (Exception exception) {
+				return null;
+			}
 		}
 	}
 }
