@@ -43,5 +43,17 @@ namespace Exeal.Katas.StringCalculator.Tests
 			// Then
 			Assert.Equal( expected: 3, actual: sum );
 		}
+
+		// Allow the Add method to handle an unknown amount of numbers
+		[Fact]
+		public void GIVEN_SeveralNumbersString_WHEN_Add_THEN_ReturnTheSum()
+		{
+			// Given
+			const String THREE_NUMBERS_STRING = "1,2,3";
+			// When
+			Int32 sum = StringCalculator.Add( THREE_NUMBERS_STRING );
+			// Then
+			Assert.Equal( expected: 6, actual: sum );
+		}
 	}
 }
