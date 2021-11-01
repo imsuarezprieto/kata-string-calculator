@@ -45,7 +45,7 @@
 		private static Match MatchExpression (
 				this String stringExpression
 		) =>
-				new Regex( @"(//(?<DELIMITER>.)\n)?(?<LIST>[\S\s]+)" )
+				new Regex( @"(//(?<DELIMITER>.+?)\n)?(?<LIST>[\S\s]+)" )
 						.Match( stringExpression );
 
 

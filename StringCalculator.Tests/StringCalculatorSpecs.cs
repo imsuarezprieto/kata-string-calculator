@@ -111,6 +111,8 @@ namespace Exeal.Katas.StringCalculator.Tests
 
 
 		// Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2
+
+
 		[Fact]
 		public void GIVEN_numbers_bigger_than_1000_WHEN_add_THEN_they_be_ignored() {
 			// Given
@@ -119,6 +121,22 @@ namespace Exeal.Katas.StringCalculator.Tests
 			Int32 noBigger1000Sum = StringCalculator.Add( WITH_NUMBERS_BIGGER1000 );
 			// Then
 			Assert.Equal( expected: 2, actual: noBigger1000Sum );
+		}
+
+
+		// Delimiters can be of any length with the following format:
+		//	“//[delimiter]\n”
+		// For example: “//[***]\n1***2***3” should return 6
+
+
+		[Fact]
+		public void GIVEN_multichar_delimiter_WHEN_add_THEN_return_sum() {
+			// Given
+			const String WITH_MULTICHAR_DELIMITERS = "//[***]\n1***2***3";
+			// When
+			Int32 multicharDelimiters = StringCalculator.Add( WITH_MULTICHAR_DELIMITERS );
+			// Then
+			Assert.Equal( expected: 6, actual: multicharDelimiters );
 		}
 
 	}
