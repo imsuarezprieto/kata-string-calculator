@@ -11,7 +11,7 @@ namespace Exeal.Katas.StringCalculator.Tests
 		// For an empty string it will return 0
 
 		[Fact]
-		public void GIVEN_EmptyString_WHEN_Add_THEN_Returns0() {
+		public void GIVEN_empty_string_WHEN_add_THEN_returns_0() {
 			// Given
 			var emptyString = String.Empty;
 			// When
@@ -21,7 +21,7 @@ namespace Exeal.Katas.StringCalculator.Tests
 		}
 
 		[Fact]
-		public void GIVEN_OneNumberString_WHEN_Add_THEN_ReturnTheNumber() {
+		public void GIVEN_one_number_string_WHEN_add_THEN_return_the_number() {
 			// Given
 			const Int32 NUMBER_TO_TEST  = 1;
 			var         oneNumberString = $"{NUMBER_TO_TEST}";
@@ -32,7 +32,7 @@ namespace Exeal.Katas.StringCalculator.Tests
 		}
 
 		[Fact]
-		public void GIVEN_TwoNumbersString_WHEN_Add_THEN_ReturnTheSum() {
+		public void GIVEN_two_numbers_string_WHEN_Add_THEN_return_the_sum() {
 			// Given
 			var twoNumbersString = "1,2";
 			// When
@@ -44,7 +44,7 @@ namespace Exeal.Katas.StringCalculator.Tests
 		// Allow the Add method to handle an unknown amount of numbers
 
 		[Fact]
-		public void GIVEN_SeveralNumbersString_WHEN_Add_THEN_ReturnTheSum() {
+		public void GIVEN_several_numbers_string_WHEN_add_THEN_return_the_sum() {
 			// Given
 			const String THREE_NUMBERS_STRING = "1,2,3";
 			// When
@@ -56,7 +56,7 @@ namespace Exeal.Katas.StringCalculator.Tests
 		// Allow the Add method to handle new lines between numbers (instead of commas)
 
 		[Fact]
-		public void GIVEN_NumberStringWithNewLines_WHEN_Add_THEN_ReturnTheSum() {
+		public void GIVEN_number_string_with_newlines_WHEN_add_THEN_returnT_the_sum() {
 			// Given
 			const String NUMBERS_WITH_NEWLINES = "1\n2,3";
 			// When
@@ -72,7 +72,7 @@ namespace Exeal.Katas.StringCalculator.Tests
 		// - The first line is optional. all existing scenarios should still be supported
 
 		[Fact]
-		public void GIVE_NumberStringWithCustomDelimiters_WHEN_Add_THEN_ReturnTheSum() {
+		public void GIVE_number_string_with_custom_delimiters_WHEN_add_THEN_return_the_sum() {
 			// Given
 			var numbersWithCustomDelimiters = "//;\n1;2";
 			// When
@@ -86,7 +86,7 @@ namespace Exeal.Katas.StringCalculator.Tests
 		// If there are multiple negatives, show all of them in the exception message.
 
 		[Fact]
-		public void GIVEN_StringWithNegativeNumbers_WHEN_Add_THEN_ThrowException() {
+		public void GIVEN_string_with_negative_numbers_WHEN_add_THEN_throw_exception() {
 			// Given
 			const String STRING_WITH_NEGATIVE_NUMBERS = "-1,2";
 			// When

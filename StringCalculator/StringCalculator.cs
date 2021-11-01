@@ -12,7 +12,7 @@
 		public static Int32 Add (
 				String numbersExpression
 		) {
-			List<Int32>? numbers = numbersExpression.GetNumbers().ToList();
+			List<Int32> numbers = numbersExpression.GetNumbers().ToList();
 			return numbers
 					.Any( static number => number < 0 )
 					? throw new ArgumentException( @$"negatives not allowed{
