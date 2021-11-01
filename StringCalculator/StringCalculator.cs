@@ -9,8 +9,9 @@
 	public static class StringCalculator
 	{
 		[SuppressMessage( category: "ReSharper", checkId: "PossiblyMistakenUseOfParamsMethod" )]
-		public static Int32 Add (String numbersExpression)
-		{
+		public static Int32 Add (
+				String numbersExpression
+		) {
 			List<Int32>? numbers = numbersExpression.GetNumbers().ToList();
 			return numbers
 					.Any( static number => number < 0 )
@@ -26,8 +27,7 @@
 		[SuppressMessage( category: "ReSharper", checkId: "StringStartsWithIsCultureSpecific" )]
 		private static Char[] GetDelimiter (
 				this String numbersExpression
-		)
-		{
+		) {
 			return new[] {
 					',',
 					'\n',
@@ -37,8 +37,7 @@
 
 		private static IEnumerable<Int32> GetNumbers (
 				this String numbersExpression
-		)
-		{
+		) {
 			return new Regex( @"(//.\n)?(?<LIST>[\S\s]+)" )
 					.Match( numbersExpression )
 					.Groups["LIST"]
@@ -49,8 +48,7 @@
 
 		private static Int32? Parse (
 				this String @string
-		)
-		{
+		) {
 			try {
 				return Int32.Parse( @string );
 			}
