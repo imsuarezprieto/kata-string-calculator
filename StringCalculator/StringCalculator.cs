@@ -6,8 +6,10 @@
 	using System.Linq;
 	using System.Text.RegularExpressions;
 
+
 	public static class StringCalculator
 	{
+
 		[SuppressMessage( category: "ReSharper", checkId: "PossiblyMistakenUseOfParamsMethod" )]
 		public static Int32 Add (
 				String numbersExpression
@@ -24,6 +26,7 @@
 					: numbers.Sum();
 		}
 
+
 		[SuppressMessage( category: "ReSharper", checkId: "StringStartsWithIsCultureSpecific" )]
 		private static Char[] GetDelimiter (
 				this String numbersExpression
@@ -38,6 +41,14 @@
 					: delimiter.ToCharArray();
 		}
 
+
+		private static Match MatchExpression (
+				this String stringExpression
+		) =>
+				new Regex( @"(//(?<DELIMITER>.)\n)?(?<LIST>[\S\s]+)" )
+						.Match( stringExpression );
+
+
 		private static IEnumerable<Int32> GetNumbers (
 				this String numbersExpression
 		) =>
@@ -48,11 +59,6 @@
 						.Split( numbersExpression.GetDelimiter() )
 						.Select( static number => number.Parse() ?? 0 );
 
-		private static Match MatchExpression (
-				this String stringExpression
-		) =>
-				new Regex( @"(//(?<DELIMITER>.)\n)?(?<LIST>[\S\s]+)" )
-						.Match( stringExpression );
 
 		private static Int32? Parse (
 				this String @string
@@ -65,6 +71,7 @@
 			}
 		}
 
+
 		private static String JoinedString (
 				this IEnumerable<Int32> numberList,
 				String                  separator = " "
@@ -73,5 +80,6 @@
 						.Aggregate(
 								seed: String.Empty,
 								func: (acc, number) => $"{acc}{separator}{number}" );
+
 	}
 }
