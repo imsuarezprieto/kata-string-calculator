@@ -45,6 +45,7 @@ namespace Exeal.Katas.StringCalculator.Tests
 		}
 
 		// Allow the Add method to handle an unknown amount of numbers
+
 		[Fact]
 		public void GIVEN_SeveralNumbersString_WHEN_Add_THEN_ReturnTheSum()
 		{
@@ -56,7 +57,8 @@ namespace Exeal.Katas.StringCalculator.Tests
 			Assert.Equal( expected: 6, actual: sum );
 		}
 
-		// Allow the Add method to handle new lines between numbers (instead of commas).
+		// Allow the Add method to handle new lines between numbers (instead of commas)
+
 		[Fact]
 		public void GIVEN_NumberStringWithNewLines_WHEN_Add_THEN_ReturnTheSum()
 		{
@@ -66,6 +68,23 @@ namespace Exeal.Katas.StringCalculator.Tests
 			Int32 sum = StringCalculator.Add( NUMBERS_WITH_NEWLINES );
 			// Then
 			Assert.Equal( expected: 6, actual: sum );
+		}
+
+		// Support different delimiters
+		//	- To change a delimiter, the beginning of the string will contain a separate line that looks like this:
+		//		“//[delimiter]\n[numbers…]”
+		//		For example “//;\n1;2” should return three where the default delimiter is ‘;’ .
+		// - The first line is optional. all existing scenarios should still be supported
+
+		[Fact]
+		public void GIVE_NumberStringWithCustomDelimiters_WHEN_Add_THEN_ReturnTheSum()
+		{
+			// Given
+			var numbersWithCustomDelimiters = "//;\n1;2";
+			// When
+			Int32 sum = StringCalculator.Add( numbersWithCustomDelimiters );
+			// Then
+			Assert.Equal( expected: 3, actual: sum );
 		}
 	}
 }
